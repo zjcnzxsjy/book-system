@@ -25,17 +25,18 @@
                 <i v-else class="input__icon el-icon-third-close-circle" @click="clear"></i>
             </span>
         </span>
-        </span>
     </div>
 </template>
 <script>
+import emitter from '../mixins/emitter'
 export default {
-  name: "selfInput",
+  name: "selfInput", //自定义输入框
   data() {
     return {
-      currentValue: this.value
+      currentValue: this.value //绑定输入值
     };
   },
+  mixins: [emitter], //暂时无用，事件广播与派发
   props: {
     value: {
       type: String,
@@ -45,35 +46,41 @@ export default {
       type: String,
       default: ""
     },
-    suffixIcon: String,
-    prefixIcon: String,
-    clearable: {
-      type: Boolean,
+    suffixIcon: String, //输入框尾部图标
+    prefixIcon: String, //输入框头部图标
+    clearable: {    //是否显示清除图标
+      type: Boolean,  
       default: false
     },
-    noBorderRadius: {
+    noBorderRadius: { //不显示圆角
       type: Boolean,
       default: false
     }
   },
   methods: {
+    //input事件回调
     handleInput(event) {
         const value = event.target.value;
         this.$emit('input', value);
         this.setCurrentValue(value);
     },
+    //change事件回调
     handleChange(event) {
         this.$emit('change', event.target.value);
     },
+    //设置输入值
     setCurrentValue (value) {
         if (value === this.currentValue) return;
         this.currentValue = value;
     },
+    //清空输入值
     clear() {
       this.setCurrentValue('');
+      this.$emit('input', '');
     }
   },
   computed: {
+    //是否显示清除图标
     showClear() {
       return this.clearable && this.currentValue !== "";
     }
@@ -94,16 +101,16 @@ export default {
     color: $Shuttle-Gray;
     display: inline-block;
     font-size: inherit;
-    height: 28px;
-    line-height: 28px;
+    height: 31px;
+    line-height: 31px;
     outline: none;
     padding: 0 0.2778rem;
     transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
     width: 100%;
   }
   .input__prefix {
-    height: 28px;
-    line-height: 28px;
+    height: 31px;
+    line-height: 31px;
     text-align: center;
     transition: all 0.3s;
     position: absolute;
@@ -112,8 +119,8 @@ export default {
     color: $Mischka;
   }
   .input__suffix {
-    height: 28px;
-    line-height: 28px;
+    height: 31px;
+    line-height: 31px;
     text-align: center;
     transition: all 0.3s;
     position: absolute;

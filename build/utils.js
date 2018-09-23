@@ -64,7 +64,10 @@ exports.cssLoaders = function (options) {
       {
         loader: 'sass-resources-loader',
         options: {
-          resources: path.resolve(__dirname, '../static/css/color.scss')
+          resources: [
+            path.resolve(__dirname, '../static/css/color.scss'),
+            path.resolve(__dirname, '../static/css/mint-ui-oem.scss')
+          ]
         }
       }
     ),

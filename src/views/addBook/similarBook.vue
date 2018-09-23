@@ -28,17 +28,27 @@ export default {
     },
     data () {
         return {
-            bookList: [{
-                name: 'java数据库系统开发实例导航java数据库系统开发实例导航java数据库系统开发实例导航',
-                reason: '我想学习XXXXXXXXXX这块知识，这本书包含的XXXXXXXXXX内容让我感兴趣;我想学习XXXXXXXXXX这块知识，这本书包含的XXXXXXXXXX内容让我感兴趣;',
-                recommend: '王小雨',
-                like: 25
-            }]
+            bookList: []
         }
+    },
+    mounted () {
+        this.$nextTick(() => {
+            this.$axios('/api/reco/similarBooks', {
+                params: {
+                    book_name: this.$route.query.book_name
+                }
+            })
+            .then((res) => {
+                this.bookList = res.data;
+            })
+        })
     },
     methods: {
         back () {
             this.$router.go(-1);
+        },
+        next () {
+             this.$router.push({path: '/wannaSee/addBook/addedBook/wannaIntroduction', query: {book_name: this.$route.query.book_name}});
         }
     }
 }
@@ -46,7 +56,7 @@ export default {
 <style lang="scss" scoped>
 .book-wrapper {
     position: absolute;
-    top: 40px;
+    top: $height-40;
     left: 0;
     right: 0;
     .book-header {

@@ -1,0 +1,34 @@
+/*
+    mint-ui oem scss
+*/
+$height-40: 40px;
+$font-size-14: 14px;
+$font-size-15: 15px;
+
+/*mt-tabbar组件样式*/
+.mint-tabbar {
+    height: $height-40;
+    .mint-tab-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .mint-tab-item-label {
+            font-size: $font-size-14;
+        }
+    }
+}
+/*mt-field组件样式*/
+.mint-field {
+    .mint-cell-wrapper {
+        .mint-cell-title {
+            width: 95px;
+            .mint-cell-text {
+                font-size: $font-size-15;
+            }
+        }
+        .mint-cell-value {
+            font-size: $font-size-15;
+            text-align: left;
+        }
+    }
+}

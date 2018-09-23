@@ -2,11 +2,11 @@
     <div>
         <div class='comment-wrapper' v-for='(item, index) in data' :key='index'>
             <div class='comment-user-item'>
-                <img :src='item.photo' class='comment-user-image'/>
+                <img :src='item.userhead' class='comment-user-image'/>
             </div>
-            <div class='comment-user-name'><span>{{item.name}}</span></div>
-            <div class='comment-user-mark'><span>{{item.mark}}</span>分</div>
-            <div class='comment-time'>{{item.time | dateFormate}}</div>
+            <div class='comment-user-name'><span>{{item.username}}</span></div>
+            <div class='comment-user-mark'><span>{{item.score}}</span>分</div>
+            <div class='comment-time'>{{item.date | dateFormate}}</div>
             <div class='comment-content'>{{item.content}}</div>
         </div>
     </div>
@@ -14,7 +14,7 @@
 <script>
 import moment from 'moment'
 export default {
-    name: 'commentList',
+    name: 'commentList', //评价列表
     props: {
         data: {
             type: Array,
@@ -22,6 +22,7 @@ export default {
         }
     },
     filters: {
+        //时间格式化，返回几秒前、几分钟前，几天前等
         dateFormate(value) {
             moment.locale('zh-cn');
             return moment(value).fromNow();
@@ -35,8 +36,11 @@ export default {
     grid-template-columns: 60px 1fr 1fr;
     grid-template-rows: 30px 30px 30px;
     align-items: center;
-    border-top: 1px solid $Mischka;
-    grid-column-gap: 5px;
+    // border-top: 1px solid $Mischka;
+    grid-column-gap: 10px;
+    & + & {
+        margin-top: 10px;
+    }
     .comment-user-name {
         font-size: 18px;
         font-weight: bold;

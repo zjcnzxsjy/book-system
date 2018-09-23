@@ -1,7 +1,7 @@
 <template>
     <div>
         <mt-header title='图书详情' fixed>
-            <div slot='left'><mt-button icon="back">返回</mt-button></div>
+            <div slot='left'><mt-button icon="back" @click='back'>返回</mt-button></div>
             <div slot='right'>
                 <router-link to='/help'>
                     <mt-button icon="help"></mt-button>
@@ -89,16 +89,21 @@ export default {
                 content: '这本书非常棒！'
             }]
         }
+    },
+    methods: {
+        back () {
+            this.$router.go(-1);
+        }
     }
 }
 </script>
 <style lang="scss" scoped>
 .details-wrapper {
     position: absolute;
-    top:40px;
+    top:$height-40;
     left: 0;
     right: 0;
-    bottom: 40px;
+    bottom: $height-40;
     // display: flex;
     // flex-direction: column;
     overflow: auto;
@@ -135,8 +140,8 @@ export default {
             }
         }
         .book-toolbar {
-            height: 40px;
-            line-height: 40px;
+            height: $height-40;
+            line-height: $height-40;
             margin-top: 5px;
             border-top: 1px solid $Mischka;
             border-bottom: 1px solid $Mischka;
@@ -163,8 +168,8 @@ export default {
             position: relative;
             height: 54px;
             .tab-label {
-                height: 40px;
-                line-height: 40px;
+                height: $height-40;
+                line-height: $height-40;
                 font-size: 0.3704rem;
                 .comment-num {
                     display: inline;
@@ -184,7 +189,7 @@ export default {
             padding: 0 0.2778rem;
             border-top: 1px solid $Mischka;
             border-left: 1px solid $Mischka;
-            height: 40px;
+            height: $height-40;
             button {
                 border: none;
                 box-shadow: none;
@@ -194,8 +199,8 @@ export default {
             }
         }
         .borrow-mark {
-            height: 40px;
-            line-height: 40px;
+            height: $height-40;
+            line-height: $height-40;
             flex: 1;
             background-color: $Red;
             font-size: 0.463rem;

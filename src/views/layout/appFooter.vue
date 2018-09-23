@@ -1,6 +1,6 @@
 <template>
     <mt-tabbar v-model="selected" @input='tabClick' fixed>
-        <mt-tab-item v-for='(menu, index) in menus' :key='index' :id='menu.name'>
+        <mt-tab-item v-for='(menu, index) in menus' :key='index' :id='menu.path'>
             {{menu.name}}
         </mt-tab-item>
     </mt-tabbar>
@@ -12,18 +12,28 @@ export default {
     return {
       menus: [
         {
-          name: "首页"
+          name: "首页",
+          path: '/home'
         },
         {
-          name: "我的借阅"
+          name: "我的借阅",
+          path: '/borrow'
         }
       ],
-      selected: "首页"
+      selected: this.$route.path === '/home' ? '/home' : '/borrow'
     };
   },
+  watch: {
+    //浏览器自带前进或后退触发时页签需要跳转
+    $route(val) {
+      if ('/home' === val.path || '/borrow' === val.path) {
+        this.selected = val.path;
+      }
+    }
+  },
   methods: {
-    tabClick(id) {
-      console.log(id);
+    tabClick(path) {
+      this.$router.push(path);
     }
   }
 };

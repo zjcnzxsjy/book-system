@@ -1,44 +1,38 @@
 <template>
-    <div>
-        <div class='book-wrapper' v-for='(book, index) in data' :key='index'>
-            <div class='book-photo'>
-                <img :src='book.photoUrl' />
-            </div>
-            <div class='book-name'>
-                <h1>{{book.name}}</h1>
-            </div>
-            <div class='book-author'>
-                作者：{{book.author}}
-            </div>
-            <div class='book-store'>
-                架上剩余：<span>{{book.store}} 本</span>
-            </div>
-            <div class='book-mark'>
-                <span>{{book.mark}}</span> 分
-            </div>
-            <div>
-                <mt-button class='el-icon-third-messageregular' size="small">{{book.comment}}</mt-button>
-                
-            </div>
-            <div>
-                <mt-button class='el-icon-third-heart' size="small">{{book.like}}</mt-button>
-            </div>
+    <div class='book-list-wrapper'>
+        <div class='book-photo'>
+            <img :src='data.image' />
+        </div>
+        <div class='book-name'>
+            <h1>{{data.title}}</h1>
+        </div>
+        <div class='book-author'>
+            作者：{{data.author}}
+        </div>
+        <div class='book-store'>
+            总共：<span>{{data.remain}} 本</span>
+        </div>
+        <div class='book-mark'>
+            <span>{{data.scoreall}}</span> 分
+        </div>
+        <div>
+            <mt-button class='el-icon-third-messageregular' size="small">{{data.commentall}}</mt-button>
+        </div>
+        <div>
+            <mt-button class='el-icon-third-heart' size="small">{{data.wannaall}}</mt-button>
         </div>
     </div>
 </template>
 <script>
 export default {
-    name: 'bookList',
+    name: 'bookList', //图书列表
     props: {
-        data: {
-            type: Array,
-            default: []
-        }
+        data: Object
     }
 }
 </script>
 <style lang="scss" scoped>
-.book-wrapper {
+.book-list-wrapper {
     display: grid;
     grid-template-columns: 100px 1fr 90px 90px;
     grid-template-rows: 30px 30px 30px 30px;
@@ -49,9 +43,11 @@ export default {
         grid-row: 1 / 5;
         background-color: $White;
         padding: 0.1852rem;
+        box-sizing: border-box;
+        height: 100%;
         img {
-            width: 80px;
-            height: 100px;
+            width: 100%;
+            height: 100%;
         }
     }
     .book-name {

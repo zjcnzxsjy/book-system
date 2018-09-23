@@ -19,7 +19,7 @@
 <script>
 import selfInput from '@/components/input/index'
 export default {
-    name: 'addBook',
+    name: 'addBook', //添加想看图书
     components: {
         selfInput
     },
@@ -33,9 +33,26 @@ export default {
             this.$router.go(-1);
         },
         next () {
-            console.log(this.input)
             if (this.input === '') return;
-            
+            this.addWannaBook()
+            .then((res) => {
+                if (1 === res.data.code) {
+                    //无人推荐过,跳转到添加页面
+                    this.$router.push({path: '/wannaSee/addBook/addedBook/wannaIntroduction', query: {book_name: this.input}});
+                    //0:架上相似 1:推荐相似
+                } else if(0 === res.data.search || 1 === res.data.search) {
+                    //架上已有相似书名书籍列表或者推荐列表已有类似书名列表
+                    this.$router.push({path: '/wannaSee/addBook/addedBook', query: {book_name: this.input}});
+                }
+            })
+        },
+        addWannaBook () {
+            return this.$axios.get('/api/user/ifCanIntroduction', {
+                params: {
+                    user_id: '22510',
+                    name: this.input
+                }
+            });
         }
     }
 }

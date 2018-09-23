@@ -8,7 +8,9 @@
         class='search-input' 
         placeholder='请输入内容' 
         prefixIcon='el-icon-third-search'
-        clearable></self-input>
+        clearable
+        :value='value'
+        @input='handleInput'></self-input>
         <!-- 后置元素 -->
         <div class="header-button is-append">
             <slot name="append"></slot>
@@ -18,9 +20,21 @@
 <script>
 import selfInput from '@/components/input/index'
 export default {
-    name: 'selfHeader',
+    name: 'selfHeader', //自定义表头组件
     components: {
         selfInput
+    },
+    props: {
+        value: {
+            type: String,
+            default: ''
+        }
+    },
+    methods: {
+        //输入事件回调
+        handleInput(val) {
+            this.$emit('input', val);
+        }
     }
 }
 </script>
@@ -57,8 +71,8 @@ export default {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    font-size: 14px;
-    height: 40px;
+    font-size: $font-size-14;
+    height: $height-40;
     line-height: 1;
     padding: 0 10px;
     position: relative;
