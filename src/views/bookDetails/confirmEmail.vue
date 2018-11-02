@@ -41,7 +41,7 @@ export default {
                     end_date: moment().add(7, 'd').format('YYYY-MM-DD')
                 }
                 let info = JSON.stringify(obj);
-                this.$router.push({path: 'borrow/details/confirm/borrow', query: {info: info}})
+                this.$router.push({path: '/borrow/details/confirm/borrow', query: {info: info}})
             } else {
                 MessageBox({
                     title: '',

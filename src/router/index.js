@@ -13,44 +13,44 @@ export default new Router({
       name: 'index',
       redirect: "/home"
     },
+    // {
+    //   path: '',
+    //   name: 'layout',
+    //   component: layout,
+    //   redirect: '/home',
+    //   children: [{
+    //     path:'home',
+    //     name:'home',
+    //     component:  r => require(['@/views/home/home'], r)
+    //   }, {
+    //     path:'borrow',
+    //     name:'borrow',
+    //     component:  r => require(['@/views/borrow/index'], r)
+    //   }]
+    // },
     {
-      path: '',
-      name: 'layout',
-      component: layout,
-      redirect: '/home',
-      children: [{
-        path:'home',
-        name:'home',
-        component:  r => require(['@/views/home/home'], r),
-        meta: {
-          keepAlive: true,
-          index: 0
-        }
-      }, {
-        path:'borrow',
-        name:'borrow',
-        component:  r => require(['@/views/borrow/index'], r),
-        meta: {
-          keepAlive: true,
-          index: 1
-        }
-      }]
+      path:'/',
+      redirect: '/home'
+    },
+    {
+      path:'/home',
+      name:'home',
+      component:  r => require(['@/views/home/home'], r)
+    },
+    {
+      path:'/borrow',
+      name:'borrow',
+      component:  r => require(['@/views/borrow/index'], r)
     },
     {
       path: '/searchBooks',
       name: 'searchBooks',
-      component: r => require(['@/views/searchBooks/index'], r),
-      meta: {
-        keepAlive: false
-      }
+      component: r => require(['@/views/searchBooks/index'], r)
     },
     {
       path: '/wannaSee',
       name: 'wannaSee',
-      component: r => require(['@/views/wannaSee/index'], r),
-      meta: {
-        keepAlive: true
-      }
+      component: r => require(['@/views/wannaSee/index'], r)
     },
     {
       path: '/wannaSee/addBook',
@@ -98,17 +98,17 @@ export default new Router({
       component: r => require(['@/views/comment/index'], r)
     },
     {
-      path: 'borrow/details/confirm/borrow',
+      path: '/borrow/details/confirm/borrow',
       name: 'confirmBorrow',
       component: r => require(['@/views/bookDetails/confirmBorrow'], r)
     },
     {
-      path: 'borrow/details/confirm/email',
+      path: '/borrow/details/confirm/email',
       name: 'confirmEmail',
       component: r => require(['@/views/bookDetails/confirmEmail'], r)
     },
     {
-      path: 'borrow/details/status/Success',
+      path: '/borrow/details/status/Success',
       name: 'borrowSuccess',
       component: r => require(['@/views/bookDetails/borrowSuccess'], r)
     }

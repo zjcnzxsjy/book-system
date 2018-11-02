@@ -1,11 +1,13 @@
 <template>
     <div>
-        <mt-header title='我的借阅' fixed>
-            <div slot='left'><mt-button icon="back" @click='back'></mt-button></div>
-            <div slot='right'>
-                <span @click='helpBtn'>怎样还书？</span>
-            </div>
-        </mt-header>
+        <div class='header-wrapper'>
+            <mt-header title='我的借阅'>
+                <div slot='left'><mt-button icon="back" @click='back'></mt-button></div>
+                <div slot='right'>
+                    <span @click='helpBtn'>怎样还书？</span>
+                </div>
+            </mt-header>
+        </div>
         <div class='borrow-wrapper'>
             <div class='tab-bar'> 
                 <mt-tabbar v-model="selected">
@@ -30,14 +32,17 @@
                 </mt-tab-container-item>
             </mt-tab-container>
         </div>
+        <app-footer></app-footer>
     </div>
 </template>
 <script>
+import appFooter from "@/views/layout/appFooter";
 import borrowList from '@/components/borrowlist/index'
 import { MessageBox } from 'mint-ui';
 export default {
     name: 'borrow', //我的借阅
     components: {
+        appFooter,
         borrowList
     },
     data () {
@@ -125,6 +130,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.header-wrapper {
+    position: relative;
+}
 .borrow-wrapper {
     position: absolute;
     top: $height-40;

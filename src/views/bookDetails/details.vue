@@ -176,7 +176,7 @@ export default {
             .then((res) => {
                 Indicator.close();
                 if (0 === res.data.code) {                                                                                              
-                    this.$router.push({path: 'borrow/details/confirm/email', query:{book_name: this.detailData.title,book_id: this.detailData.bookId, token: res.data.message/*验证码*/}});
+                    this.$router.push({path: '/borrow/details/confirm/email', query:{book_name: this.detailData.title,book_id: this.detailData.bookId, token: res.data.message/*验证码*/}});
                 } else {
                     MessageBox({
                         title: '',

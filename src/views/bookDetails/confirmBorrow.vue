@@ -38,7 +38,7 @@ export default {
             })
             .then((res) => {
                 if (0 === res.data.code) {
-                    this.$router.push('borrow/details/status/success')
+                    this.$router.push('/borrow/details/status/success')
                 }
                 
             })

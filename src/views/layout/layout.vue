@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class='wrapper'>
       <router-view></router-view>
       <app-footer></app-footer>
   </div>
@@ -14,6 +14,9 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+</style>
+
 
 
 

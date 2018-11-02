@@ -81,6 +81,8 @@ export default {
         }
     }
     .search-result {
+        height: calc(100% - 40px);
+        overflow-y: auto;
         .search-result-title{
             padding: 0.2778rem 0 0.2778rem 0.2778rem;
         }

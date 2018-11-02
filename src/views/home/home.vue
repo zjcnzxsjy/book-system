@@ -33,11 +33,13 @@
       :start='0'
       :limit='3'></all-book>
     </mt-loadmore>
+    <app-footer></app-footer>
   </div>
 
 </template>
 <script>
 import appHeader from "@/views/layout/appHeader";
+import appFooter from "@/views/layout/appFooter";
 import newBook from "./newBook";
 import allBook from "./allBook";
 import 'swiper/dist/css/swiper.css'
@@ -75,6 +77,7 @@ export default {
   },
   components: {
     appHeader,
+    appFooter,
     newBook,
     allBook,
     swiper,
